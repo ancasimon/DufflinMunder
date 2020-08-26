@@ -12,9 +12,14 @@ namespace DufflinMunder.Transactions
         public decimal SaleAmount { get; set; }
         public Cycle Recurring { get; set; }
         public int ContractLength { get; set; }
-      
-
-
+         public Sale( string salesAgent, string clientName, int clientId, decimal saleAmount, Cycle cycle, int contractLength)
+        {
+            SalesAgent = salesAgent;
+            ClientName = clientName;
+            ClientId = clientId;
+            SaleAmount = saleAmount;
+            Recurring = cycle;
+            ContractLength = contractLength;
+        }
     }
-   
 }

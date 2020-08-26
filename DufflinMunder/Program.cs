@@ -5,6 +5,7 @@ using DufflinMunder.Transactions;
 using System.Security.Cryptography.X509Certificates;
 using System.Linq;
 using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DufflinMunder
 {
@@ -41,29 +42,27 @@ namespace DufflinMunder
             //NOTE FROM ANCA: FYI, Moniq and Beth: I updated these lists to have them get stored in the TotalSalesClosed property on each sales employee!! Previously: 1 - they were just independent lists with no relationship to that property and 2 - that property was called just TotalSale. 
             employee1.TotalSalesClosed = new List<Sale>
             {
-                new Sale{ SalesAgent = "Dwight Hyte", ClientName = "Cafe Boeuf", ClientId = 100, SaleAmount = 1500.50m, Recurring = Cycle.Monthly, ContractLength = 6},
-                new Sale{ SalesAgent = "Dwight Hyte", ClientName = "The American Duct Tape Council", ClientId = 200, SaleAmount = 4000.45m, Recurring = Cycle.Weekly, ContractLength = 3},
-                new Sale{ SalesAgent = "Dwight Hyte", ClientName = "Earl's Academy of Accents", ClientId = 300, SaleAmount = 1200.05m, Recurring = Cycle.Annually, ContractLength = 3},
+                new Sale( "Dwight Hyte", "Cafe Boeuf", 100, 1500.50m, Cycle.Monthly, 6),
+                new Sale("Dwight Hyte","The American Duct Tape Council",  200, 4000.45m, Cycle.Weekly, 3),
+                new Sale("Dwight Hyte", "Earl's Academy of Accents", 300, 1200.05m, Cycle.Annually,3),
              };
 
             employee2.TotalSalesClosed = new List<Sale>
 
             {
-                new Sale{ SalesAgent = "Tim Halbert", ClientName = "The Fearmonger's Shop", ClientId = 400, SaleAmount = 1000.00m, Recurring = Cycle.Weekly, ContractLength = 6},
-                new Sale{ SalesAgent = "Tim Halbert", ClientName = "Ralph's Pretty Good Grocery", ClientId = 500, SaleAmount = 100.99m, Recurring = Cycle.Annually, ContractLength = 3},
+                new Sale( "Tim Halbert", "The Fearmonger's Shop",  400, 1000.00m, Cycle.Weekly, 6),
+                new Sale( "Tim Halbert", "Ralph's Pretty Good Grocery", 500, 100.99m, Cycle.Annually, 3),
              };
 
             employee3.TotalSalesClosed = new List<Sale>
 
             {
-                new Sale{ SalesAgent = "Phyllis Leaf", ClientName = "The Federation of Associated Organizations", ClientId = 600, SaleAmount = 15000.00m, Recurring = Cycle.Monthly, ContractLength = 6},
-                new Sale{ SalesAgent = "Phyllis Leaf", ClientName = "Mournful Oatmeal", ClientId = 700, SaleAmount = 5000.99m, Recurring = Cycle.Weekly, ContractLength = 3},
-                new Sale{ SalesAgent = "Phyllis Leaf", ClientName = "The Professional Organization of English Majors (P.O.E.M.)", ClientId = 800, SaleAmount = 100.99m, Recurring = Cycle.Annually, ContractLength = 3},
-                new Sale{ SalesAgent = "Phyllis Leaf", ClientName = "Fritz Electronics", ClientId = 900, SaleAmount = 2000.55m, Recurring = Cycle.Monthly, ContractLength = 3},
+                new Sale("Phyllis Leaf", "The Federation of Associated Organizations", 600, 15000.00m, Cycle.Monthly, 6),
+                new Sale("Phyllis Leaf","Mournful Oatmeal", 700, 5000.99m, Cycle.Weekly,3),
+                new Sale("Phyllis Leaf","The Professional Organization of English Majors (P.O.E.M.)", 800, 100.99m, Cycle.Annually, 3),
+                new Sale("Phyllis Leaf", "Fritz Electronics", 900, 2000.55m, Cycle.Monthly, 3),
 
              };
-
-
 
             //USER WORKFLOW BEGINS HERE:
             
@@ -94,25 +93,44 @@ namespace DufflinMunder
                     switch (userSelection)
                     {
                         case 1:
+                            int salesAgentId = 0;
                             showWelcome = false;
-                            Console.WriteLine("Please enter the sales agent name.");
+                            Console.WriteLine("Which sales employee are you? Please enter your employee id:");
+                            foreach (var person in salesTeam)
+                            {
+                                Console.WriteLine(Indent(4)+$"{person.EmployeeId} - {person.FirstName} {person.LastName} ");
+                            }
                             var salesAgent = Console.ReadLine();
+                            bool validsalesAgent = Int32.TryParse(salesAgent, out salesAgentId);
+                            SalesStaff selectedSalesAgent = salesTeam.First(person => person.EmployeeId == salesAgentId);
+                            Console.WriteLine($"\tHi {selectedSalesAgent.FirstName}!");
 
-                            Console.WriteLine("Please Enter the client business name.");
+                            Console.WriteLine("\nPlease enter the client business name.");
                             var clientName = Console.ReadLine();
 
-                            Console.WriteLine("Please Enter the client Id.");
+                            Console.WriteLine("Please enter the client Id.");
                             var clientId = int.Parse(Console.ReadLine());
 
                             Console.WriteLine("Please enter the sale amount using 2 decimals.");
                             var saleAmount = decimal.Parse(Console.ReadLine());
 
-                            Console.WriteLine("Please choose a billing cycle: Monthly, Weekly,Quarterly,Annually.");
-                            var cycle = Console.ReadLine();
+                            Console.WriteLine("Please choose a billing cycle:");
+                            var values = Enum.GetValues(typeof(Cycle));
+                            foreach (var option in values)
+                            {
+                                Console.WriteLine(option);
+                            }
+                             var cyclePayment = Console.ReadLine();
+                            Cycle cycle = (Cycle)Enum.Parse(typeof(Cycle), cyclePayment);
+                             
+                            
        
                             Console.WriteLine("Please enter the contract length in months.");
                             var contractLength = int.Parse(Console.ReadLine());
 
+                            selectedSalesAgent.TotalSalesClosed.Add(new Sale(salesAgent,clientName,clientId,saleAmount, cycle, contractLength));
+                            Console.WriteLine($"\tCongratulations {selectedSalesAgent.FirstName}, your new sale has been added!\n");
+                                                       
                             break;
 
                         case 2:
