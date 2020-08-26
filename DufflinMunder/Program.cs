@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using DufflinMunder.Transactions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DufflinMunder
 {
@@ -42,6 +43,37 @@ namespace DufflinMunder
             {
                 Console.WriteLine(item.ClientId);
             }
+            var userSelection = 0;
+            string input = null;
+            do
+            {
+
+                Console.WriteLine(@"Welcome to DufflinMunder cardboard company sales portal.
+1. Enter Sales
+2. Generate Report for Accountant.
+3. Add New Sales Employee.
+4. Find a Sale.
+5. Exit.
+");
+                input = Console.ReadLine();
+                userSelection = Convert.ToInt32(input);
+                switch(userSelection)
+                {
+                    case 1: Console.WriteLine("Enter Sales");
+                        break;
+                    case 2: Console.WriteLine("Generate Report for Account");
+                        break;
+                    case 3:
+                        Console.WriteLine("Add New Sales Employee.");
+                        break;
+                    case 4:
+                        Console.WriteLine("Find a Sale.");
+                        break;
+                }
+                Console.WriteLine("Would you like to choose another option?");
+
+            }
+            while (userSelection != 5);
 
         }
     }
