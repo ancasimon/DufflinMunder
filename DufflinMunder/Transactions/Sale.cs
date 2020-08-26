@@ -12,15 +12,9 @@ namespace DufflinMunder.Transactions
         public int SaleAmount { get; set; }
         public Cycle Recurring { get; set; }
         public int ContractLength { get; set; }
-    }
 
-    enum Cycle
-    {
-        Monthly,
-        Weekly,
-        Quarterly,
-        Annually
-    }
 
+
+    }
    
 }
