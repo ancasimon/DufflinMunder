@@ -43,6 +43,7 @@ namespace DufflinMunder
             var userSelection = 0;
             string input = null;
             bool showWelcome = true;
+            bool validUserSelection = false;
 
             do
             {
@@ -57,30 +58,35 @@ namespace DufflinMunder
 4.Find a Sale.
 5.Exit.
 ");
-          
+                input = Console.ReadLine();
 
-               input = Console.ReadLine();
-               userSelection = Convert.ToInt32(input);
-                
-                switch(userSelection)
+                validUserSelection = Int32.TryParse(input, out userSelection);
+
+                if (validUserSelection)
                 {
-                    case 1: 
-                        Console.WriteLine("Enter Sales");
-                        showWelcome = false;
-                        break;
-                    case 2: Console.WriteLine("Generate Report for Account");
-                        showWelcome = false;
-                        break;
-                    case 3:
-                        Console.WriteLine("Add New Sales Employee.");
-                        showWelcome = false;
-                        break;
-                    case 4:
-                        Console.WriteLine("Find a Sale.");
-                        showWelcome = false;
-                        break;
+                    switch (userSelection)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter Sales");
+                            showWelcome = false;
+                            break;
+                        case 2:
+                            Console.WriteLine("Generate Report for Account");
+                            showWelcome = false;
+                            break;
+                        case 3:
+                            Console.WriteLine("Add New Sales Employee.");
+                            showWelcome = false;
+                            break;
+                        case 4:
+                            Console.WriteLine("Find a Sale.");
+                            showWelcome = false;
+                            break;
+                    }
+                    Console.WriteLine("Would you like to choose another option?");
                 }
-                Console.WriteLine("Would you like to choose another option?");
+                else Console.WriteLine("Please enter a valid option!");
+                continue;
                 
             }
             while (userSelection != 5);
