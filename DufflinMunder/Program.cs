@@ -39,39 +39,49 @@ namespace DufflinMunder
                 new Sale{ SalesAgent = "Phyllis", ClientName = "ClientI", ClientId = 910, SaleAmount = 1200, Recurring = Cycle.Annually, ContractLength = 3},
              };
 
-            foreach (var item in salesPhyllis)
-            {
-                Console.WriteLine(item.ClientId);
-            }
+            
             var userSelection = 0;
             string input = null;
+            bool showWelcome = true;
+
             do
             {
-
-                Console.WriteLine(@"Welcome to DufflinMunder cardboard company sales portal.
-1. Enter Sales
-2. Generate Report for Accountant.
-3. Add New Sales Employee.
-4. Find a Sale.
-5. Exit.
+                if (showWelcome)
+                {
+                    Console.WriteLine(@"Welcome to DufflinMunder Cardboard Company Sales Portal.");
+                }
+                Console.WriteLine(@"
+1.Enter Sales
+2.Generate Report for Accountant.
+3.Add New Sales Employee.
+4.Find a Sale.
+5.Exit.
 ");
-                input = Console.ReadLine();
-                userSelection = Convert.ToInt32(input);
+          
+
+               input = Console.ReadLine();
+               userSelection = Convert.ToInt32(input);
+                
                 switch(userSelection)
                 {
-                    case 1: Console.WriteLine("Enter Sales");
+                    case 1: 
+                        Console.WriteLine("Enter Sales");
+                        showWelcome = false;
                         break;
                     case 2: Console.WriteLine("Generate Report for Account");
+                        showWelcome = false;
                         break;
                     case 3:
                         Console.WriteLine("Add New Sales Employee.");
+                        showWelcome = false;
                         break;
                     case 4:
                         Console.WriteLine("Find a Sale.");
+                        showWelcome = false;
                         break;
                 }
                 Console.WriteLine("Would you like to choose another option?");
-
+                
             }
             while (userSelection != 5);
 
