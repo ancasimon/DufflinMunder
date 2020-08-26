@@ -12,7 +12,7 @@ namespace DufflinMunder.Transactions
         public decimal SaleAmount { get; set; }
         public Cycle Recurring { get; set; }
         public int ContractLength { get; set; }
-
+      
 
 
     }

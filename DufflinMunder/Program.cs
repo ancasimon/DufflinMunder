@@ -94,8 +94,25 @@ namespace DufflinMunder
                     switch (userSelection)
                     {
                         case 1:
-                            Console.WriteLine("Enter Sales");
                             showWelcome = false;
+                            Console.WriteLine("Please enter the sales agent name.");
+                            var salesAgent = Console.ReadLine();
+
+                            Console.WriteLine("Please Enter the client business name.");
+                            var clientName = Console.ReadLine();
+
+                            Console.WriteLine("Please Enter the client Id.");
+                            var clientId = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Please enter the sale amount using 2 decimals.");
+                            var saleAmount = decimal.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Please choose a billing cycle: Monthly, Weekly,Quarterly,Annually.");
+                            var cycle = Console.ReadLine();
+       
+                            Console.WriteLine("Please enter the contract length in months.");
+                            var contractLength = int.Parse(Console.ReadLine());
+
                             break;
 
                         case 2:
