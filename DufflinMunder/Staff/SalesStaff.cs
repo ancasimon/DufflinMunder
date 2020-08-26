@@ -7,9 +7,9 @@ namespace DufflinMunder.Employees
 {
     class SalesStaff : Employee
     {
-        public List<Sale> TotalSale { get; set; }
+        public List<Sale> TotalSalesClosed { get; set; }
 
-        public SalesStaff(string firstName, string lastName, int employeeId) : base(firstName, lastName, employeeId, EmployeeDepartment.Sales)
+        public SalesStaff(string firstName, string lastName, int employeeId, string quote) : base(firstName, lastName, employeeId, EmployeeDepartment.Sales, quote)
         { 
             
         }

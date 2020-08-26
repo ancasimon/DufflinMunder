@@ -6,7 +6,7 @@ namespace DufflinMunder.Employees
 {
     class Accountant : Employee 
     {
-        public Accountant(string firstName, string lastName, int employeeId) : base(firstName, lastName, employeeId, EmployeeDepartment.Accountant)
+        public Accountant(string firstName, string lastName, int employeeId, string quote) : base(firstName, lastName, employeeId, EmployeeDepartment.Accountant, quote)
         {
 
         }
