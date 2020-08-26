@@ -62,7 +62,7 @@ namespace DufflinMunder
 
                 validUserSelection = Int32.TryParse(input, out userSelection);
 
-                if (validUserSelection)
+                if (validUserSelection && userSelection < 6)
                 {
                     switch (userSelection)
                     {
