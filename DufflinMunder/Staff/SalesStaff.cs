@@ -10,8 +10,8 @@ namespace DufflinMunder.Employees
         public List<Sale> TotalSalesClosed { get; set; }
 
         public SalesStaff(string firstName, string lastName, int employeeId, string quote) : base(firstName, lastName, employeeId, EmployeeDepartment.Sales, quote)
-        { 
-            
+        {
+            TotalSalesClosed = new List<Sale>();
         }
     }
 }

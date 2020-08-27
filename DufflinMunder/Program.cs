@@ -68,22 +68,18 @@ namespace DufflinMunder
             
             var userSelection = 0;
             string input = null;
-            bool showWelcome = true;
             bool validUserSelection = false;
 
+
+            Console.WriteLine("Welcome to DufflinMunder Cardboard Company Sales Portal.\n");
             do
             {
-                if (showWelcome)
-                {
-                    Console.WriteLine(@"Welcome to DufflinMunder Cardboard Company Sales Portal.");
-                }
-                Console.WriteLine(@"
-1.Enter Sales.
-2.Generate Report for Accountant.
-3.Add New Sales Employee.
-4.Find a Sale.
-5.Exit.
-");
+                Console.WriteLine("\t1.Enter Sales.");
+                Console.WriteLine("\t2.Generate Report for Accountant.");
+                Console.WriteLine("\t3.Add New Sales Employee.");
+                Console.WriteLine("\t4.Find a Sale.");
+                Console.WriteLine("\t5.Exit.");
+
                 input = Console.ReadLine();
 
                 validUserSelection = Int32.TryParse(input, out userSelection);
@@ -94,7 +90,6 @@ namespace DufflinMunder
                     {
                         case 1:
                             int salesAgentId = 0;
-                            showWelcome = false;
                             Console.WriteLine("Which sales employee are you? Please enter your employee id:");
                             foreach (var person in salesTeam)
                             {
@@ -134,7 +129,6 @@ namespace DufflinMunder
                             break;
 
                         case 2:
-                            showWelcome = false;
                             string accountantSelection;
                             int accountantEmployeeId;
                             bool validAccountantSelection;
@@ -189,11 +183,22 @@ For: {selectedAccountant.FirstName}
 
                         case 3:
                             Console.WriteLine("Add New Sales Employee.");
-                            showWelcome = false;
+                            Console.WriteLine("Please enter new sales employee first name");
+                            var firstName = Console.ReadLine();
+                            Console.WriteLine("Please enter new sales employee last name");
+                            var lastName = Console.ReadLine();
+                            Console.WriteLine("Please add a quote");
+                            var quote = Console.ReadLine();
+                            Console.WriteLine($"First Name: {firstName}");
+                            Console.WriteLine($"Last Name: {lastName}");
+                            var random = new Random().Next(1000, 9999);
+                            Console.WriteLine($"Employee Id: {random}");
+
+                            salesTeam.Add(new SalesStaff(firstName, lastName, random, quote));
+
                             break;
                         case 4:
                             Console.WriteLine("Find a Sale.");
-                            showWelcome = false;
                             break;
                     }
                     Console.WriteLine("Would you like to choose another option?");
