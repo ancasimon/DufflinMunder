@@ -5,7 +5,9 @@ using DufflinMunder.Transactions;
 using System.Security.Cryptography.X509Certificates;
 using System.Linq;
 using System.CodeDom.Compiler;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+
 
 namespace DufflinMunder
 {
@@ -22,6 +24,7 @@ namespace DufflinMunder
 
             var salesTeam = new List<SalesStaff>();
             var accountingTeam = new List<Accountant>();
+            var totalSalesTransactions = new List<Sale>();
 
             var employee1 = new SalesStaff("Dwight", "Hyte", 3023, "Through concentration, I can raise and lower my cholesterol at will.");
             var employee2 = new SalesStaff("Tim", "Halbert", 3246, "I've always subscribed to the idea that if you really want to impress your boss, you go in there and you do mediocre work, half-heartedly.");
@@ -48,14 +51,12 @@ namespace DufflinMunder
              };
 
             employee2.TotalSalesClosed = new List<Sale>
-
             {
                 new Sale( "Tim Halbert", "The Fearmonger's Shop",  400, 1000.00m, Cycle.Weekly, 6),
                 new Sale( "Tim Halbert", "Ralph's Pretty Good Grocery", 500, 100.99m, Cycle.Annually, 3),
              };
 
             employee3.TotalSalesClosed = new List<Sale>
-
             {
                 new Sale("Phyllis Leaf", "The Federation of Associated Organizations", 600, 15000.00m, Cycle.Monthly, 6),
                 new Sale("Phyllis Leaf","Mournful Oatmeal", 700, 5000.99m, Cycle.Weekly,3),
@@ -64,8 +65,13 @@ namespace DufflinMunder
 
              };
 
+            //ANCA: Added current sales to a single collection for all sales - QUESTION: How do we do this on the fly for new sales??? Need a method in the Sale class and call it int he constructor??
+            totalSalesTransactions.AddRange(employee1.TotalSalesClosed);
+            totalSalesTransactions.AddRange(employee2.TotalSalesClosed);
+            totalSalesTransactions.AddRange(employee3.TotalSalesClosed);
+
             //USER WORKFLOW BEGINS HERE:
-            
+
             var userSelection = 0;
             string input = null;
             bool validUserSelection = false;
@@ -125,7 +131,9 @@ namespace DufflinMunder
 
                             selectedSalesAgent.TotalSalesClosed.Add(new Sale(salesAgent,clientName,clientId,saleAmount, cycle, contractLength));
                             Console.WriteLine($"\tCongratulations {selectedSalesAgent.FirstName}, your new sale has been added!\n");
-                                                       
+
+                            totalSalesTransactions.Add(new Sale(salesAgent, clientName, clientId, saleAmount, cycle, contractLength));
+
                             break;
 
                         case 2:
@@ -138,8 +146,8 @@ namespace DufflinMunder
                             var accountantsIds = new List<int>();
                             bool validAccountantId;
 
-                            Console.WriteLine("Generate Report for Accountant");
-                            Console.WriteLine("Which accountant would you like to see a report for? (Please type in their employee ID.)");
+                            Console.WriteLine("Generate Report for Accountant\n");
+                            Console.WriteLine("Which accountant would you like to see a report for? (Please type in their employee ID.)\n");
 
                             foreach (var person in accountingTeam)
                             {
@@ -177,7 +185,7 @@ For: {selectedAccountant.FirstName}
                                     Console.WriteLine(Indent(10) + $"Total: {totalSalesTeamMemberValue:C2}\n");
                                 }
                             }
-                            else Console.WriteLine("Please enter a valid accounting team member's employee ID!");
+                            else Console.WriteLine("Please enter a valid accounting team member's employee ID!\n");
 
                             break;
 
@@ -197,13 +205,39 @@ For: {selectedAccountant.FirstName}
                             salesTeam.Add(new SalesStaff(firstName, lastName, random, quote));
 
                             break;
+
                         case 4:
-                            Console.WriteLine("Find a Sale.");
+                            int salesClientId = 0;
+                            bool validId;
+                            bool validClientId;
+                            Sale selectedSale;
+
+                            Console.WriteLine("Find a Sale\n");
+                            Console.WriteLine("Please enter the client ID you would like to review.\n");
+                            var userInput = Console.ReadLine();
+                            validId = Int32.TryParse(userInput, out salesClientId);
+                            validClientId = totalSalesTransactions.Any(item => item.ClientId == salesClientId);
+
+                            if (validId && validClientId)
+                            {
+                                selectedSale = totalSalesTransactions.First(item => item.ClientId == salesClientId);
+                                Console.WriteLine(Indent(4)+$@"Here are the details of the client ID you requested:
+CLient ID: {selectedSale.ClientId}
+Client Name: {selectedSale.ClientName}
+Sales Agent: {selectedSale.SalesAgent}
+Sale Amount: {selectedSale.SaleAmount}
+Recurring: {selectedSale.Recurring}
+Time Frame: {selectedSale.ContractLength}
+");
+                            }
+                            else Console.WriteLine("Please enter a valid client ID!\n");
+
                             break;
+
                     }
-                    Console.WriteLine("Would you like to choose another option?");
+                    Console.WriteLine("Would you like to choose another option?\n");
                 }
-                else Console.WriteLine("Please enter a valid option!");
+                else Console.WriteLine("Please enter a valid option!\n");
                 continue;
                 
             }
