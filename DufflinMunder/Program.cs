@@ -196,10 +196,6 @@ For: {selectedAccountant.FirstName}
 
                             salesTeam.Add(new SalesStaff(firstName, lastName, random, quote));
 
-                            foreach (var item in salesTeam)
-                            {
-                                Console.WriteLine(item.FirstName);
-                            }
                             break;
                         case 4:
                             Console.WriteLine("Find a Sale.");
