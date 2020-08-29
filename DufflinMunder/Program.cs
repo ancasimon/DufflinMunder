@@ -112,7 +112,7 @@ namespace DufflinMunder
                             Console.WriteLine("Please enter the client Id.");
                             var clientId = int.Parse(Console.ReadLine());
 
-                            Console.WriteLine("Please enter the sale amount using 2 decimals.");
+                            Console.WriteLine("Please enter the sale amount.");
                             var saleAmount = decimal.Parse(Console.ReadLine());
 
                             Console.WriteLine("Please choose a billing cycle:");
@@ -227,7 +227,7 @@ Client Name: {selectedSale.ClientName}
 Sales Agent: {selectedSale.SalesAgent}
 Sale Amount: {selectedSale.SaleAmount}
 Recurring: {selectedSale.Recurring}
-Time Frame: {selectedSale.ContractLength}
+Time Frame: {selectedSale.ContractLength} Months
 ");
                             }
                             else Console.WriteLine("Please enter a valid client ID!\n");
