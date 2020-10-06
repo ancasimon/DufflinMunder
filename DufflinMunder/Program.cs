@@ -13,7 +13,7 @@ namespace DufflinMunder
 {
     class Program
     {
-        //NOTE FROM ANCA: I added this Indent method in order to help me format the report. Just fyi.
+        //NOTE FROM ANCA: I added this Indent method in order to help me format the report. Also eventually learned I could use /t so will be doing that going forward!
         public static string Indent(int count)
         {
             return "".PadLeft(count);
