@@ -19,7 +19,7 @@ Console Project
 
 > The biggest issue you have is keeping track of your clients and their orders so you can report them back to Michael your overzealous Regional Manager that you do anything for and your secret, cheating ex-girlfriend Accountant, Angelina.
 
-# User Interface
+### User Interface
 
 ```
 Welcome to Dufflin/Munder Cardboard Co. 
@@ -75,7 +75,7 @@ Total: $12,234.20
 Total: $9,083.94
 ```
 
-# Implementation Hints:
+### Implementation Hints:
 
 Create an **Employee** class which will be a base class for **SalesEmployee** & **AccountantEmployee**.
 
@@ -97,8 +97,8 @@ Generating a report:
 
 One of the menu options states to "Find a Sale", enter a client's # and display that **Sale** with the corresponding saler. 
 
-### ****Keep in mind the application should keep running until you press '5' to exit it....
+#### ****Keep in mind the application should keep running until you press '5' to exit it....
 
-## Stretch Goals ⭐
+### Stretch Goals ⭐
 
 Create a projected 3 month report, calculating those sales over the 3 months.
