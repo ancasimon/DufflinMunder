@@ -3,8 +3,8 @@
 This was our first group project in the Backend part of our NSS bootcamp. 
 
 ## Individual Contributions
-My specific contributions included working on the Accountant Sales Report (#2) and the ability to find a sale (#4). 
-For both features, I gave the user the ability to select users or clients by ID to keep data entry more accurate than if one were to type a name. 
+My individual contributions included working on the Accountant Sales Report (#2) and the ability to find a sale (#4). 
+For both features, I gave the user the ability to select employees or clients by ID to keep data entry more accurate than if one were to type a name. 
 To validate the user's entry, I took advantage of the TryParse() method. 
 To enhance the monthly sales report feature, I also had some fun adding a new property for an illustrative quote for each sales employee - using quotes from the original characters in The Office - because, let's be honest, any financial report needs some bling!
 
