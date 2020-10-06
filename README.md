@@ -4,13 +4,12 @@ This was our first group project in the Backend part of our NSS bootcamp.
 
 ## Individual Contributions
 My specific contributions included working on the Accountant Sales Report (#2) and the ability to find a sale (#4). 
-For both features, I gave the user the ability to select users by ID to keep data entry more accurate than if one were to type a name. 
-In the process of validating the user's entry, I discovered the TryParse() method which made additional validation options feasible throughout the project. 
-TO enhance the first feature, I also had some fun adding a new property for an illustrative quote for each sales employee - using quotes from the original characters in The Office - because any financial report needs some bling, let's be honest!
+For both features, I gave the user the ability to select users or clients by ID to keep data entry more accurate than if one were to type a name. 
+To validate the user's entry, I took advantage of the TryParse() method. 
+To enhance the monthly sales report feature, I also had some fun adding a new property for an illustrative quote for each sales employee - using quotes from the original characters in The Office - because, let's be honest, any financial report needs some bling!
 
 ## Lessons Learned
-This project was our first opportunity to do mob programming. Although it was not easy at first, we learned that we were better for having done it because we benefitted from ideas each of us individually would not have thought of on our own,
-because we had to think our own suggestions through more thoroughly since we were asking someone else to do it, and because we had to slow down and be more intentional about the coding process. 
+This project was our first opportunity to do mob programming. Although it was not easy at first, we learned that we were better for having done it because we benefitted from ideas each of us individually would not have thought of on our own, because we had to think our own suggestions through more thoroughly since we were asking someone else to do it, and because we had to slow down and be more intentional about the coding process. 
 
 
 ## Project Instructions:
